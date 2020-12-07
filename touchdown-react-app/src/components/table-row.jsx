@@ -1,12 +1,16 @@
 import React from "react";
 
 const TableRow = (props) => {
+  const { player } = props;
   return (
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+      <td>{player.firstName}</td>
+      <td>{player.lastName}</td>
+      <td>{player.position}</td>
+      <td>{player.height}</td>
+      <td>{player.weight}</td>
+      <td>{player.team}</td>
+      <td>{player.college}</td>
     </tr>
   );
 };

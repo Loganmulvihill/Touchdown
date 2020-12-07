@@ -3,26 +3,25 @@ import TableHeader from "./table-header";
 import TableRow from "./table-row";
 
 const FilteredTable = (props) => {
+  const { players } = props;
   return (
     <table class="table table-bordered col-12 col-md-8">
       <thead>
         <tr>
-          <TableHeader />
+          {/* <TableHeader /> */}
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Position</th>
+          <th scope="col">Height</th>
+          <th scope="col">Weight</th>
+          <th scope="col">Team</th>
+          <th scope="col">College</th>
         </tr>
       </thead>
       <tbody>
-        <TableRow />
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td colspan="2">Larry the Bird</td>
-          <td>@twitter</td>
-        </tr>
+        {players.map((player) => (
+          <TableRow player={player} />
+        ))}
       </tbody>
     </table>
   );
