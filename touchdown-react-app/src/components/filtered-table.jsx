@@ -4,8 +4,31 @@ import TableRow from "./table-row";
 
 const FilteredTable = (props) => {
   const { players } = props;
+  let playerRow = null;
+  // let schools = players.map((player) => player.cteam);
+  // let uniqueSchools = [...new Set(schools)];
+  if (players.length === 0) {
+    playerRow = (
+      <tr>
+        <td>Player data coming shortly</td>
+        <td>Player data coming shortly</td>
+        <td>Player data coming shortly</td>
+        <td>Player data coming shortly</td>
+        <td>Player data coming shortly</td>
+        <td>Player data coming shortly</td>
+        <td>Player data coming shortly</td>
+      </tr>
+    );
+  } else {
+    // console.log(schools);
+    // console.log(uniqueSchools);
+    // console.log(typeof players);
+    playerRow = players.map((player) => (
+      <TableRow player={player} key={player.player} />
+    ));
+  }
   return (
-    <table class="table table-bordered col-12 col-md-8">
+    <table className="table table-bordered col-12 col-md-8">
       <thead>
         <tr>
           {/* <TableHeader /> */}
@@ -18,11 +41,7 @@ const FilteredTable = (props) => {
           <th scope="col">College</th>
         </tr>
       </thead>
-      <tbody>
-        {players.map((player) => (
-          <TableRow player={player} />
-        ))}
-      </tbody>
+      <tbody>{playerRow}</tbody>
     </table>
   );
 };

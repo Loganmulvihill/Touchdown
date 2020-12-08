@@ -4,13 +4,13 @@ const TableRow = (props) => {
   const { player } = props;
   return (
     <tr>
-      <td>{player.firstName}</td>
-      <td>{player.lastName}</td>
-      <td>{player.position}</td>
+      <td>{player.fname}</td>
+      <td>{player.lname}</td>
+      <td>{player.pos1}</td>
       <td>{player.height}</td>
       <td>{player.weight}</td>
-      <td>{player.team}</td>
-      <td>{player.college}</td>
+      <td>{player.cteam}</td>
+      <td>{player.col}</td>
     </tr>
   );
 };
