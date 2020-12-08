@@ -3,7 +3,7 @@ import TableHeader from "./table-header";
 import TableRow from "./table-row";
 
 const FilteredTable = (props) => {
-  const { players } = props;
+  const { players, filteredPlayers } = props;
   let playerRow = null;
   // let schools = players.map((player) => player.cteam);
   // let uniqueSchools = [...new Set(schools)];
@@ -19,6 +19,10 @@ const FilteredTable = (props) => {
         <td>Player data coming shortly</td>
       </tr>
     );
+  } else if (filteredPlayers) {
+    playerRow = filteredPlayers.map((player) => (
+      <TableRow player={player} key={player.player} />
+    ));
   } else {
     // console.log(schools);
     // console.log(uniqueSchools);

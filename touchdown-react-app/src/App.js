@@ -10,9 +10,6 @@ function App() {
     { id: 2, title: "Position" },
     { id: 3, title: "Height" },
     { id: 4, title: "Weight" },
-    // { id: 5, title: "Weeks" },
-    // { id: 6, title: "Game Type" },
-    // { id: 7, title: "Coach" },
   ];
 
   const fakePlayers = [
@@ -57,6 +54,7 @@ function App() {
   const [playerArray, setPlayers] = useState([]);
   const [team, setTeam] = useState(null);
   const [position, setPosition] = useState(null);
+  const [filteredArray, setfilteredPlayers] = useState(null);
 
   const handleTeamChange = (e) => {
     setTeam(e.target.value);
@@ -65,15 +63,25 @@ function App() {
   const handlePositionChange = (e) => {
     setPosition(e.target.value);
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const filteredPlayers = playerArray.filter(
+      (player) => player.cteam === team && player.pos1 === position
+    );
+
+    setfilteredPlayers(filteredPlayers);
+    console.log(filteredPlayers);
+  };
   // let filterChoices = []
 
-  // useEffect(() => {
-  //   fetch(
-  //     "https://cors-anywhere.herokuapp.com/https://api.armchairanalysis.com/v1.1/test/players?status=active"
-  //   )
-  //     .then((response) => response.json())
-  //     .then((data) => setPlayers(data.data));
-  // }, [playerArray]);
+  useEffect(() => {
+    fetch(
+      "https://cors-anywhere.herokuapp.com/https://api.armchairanalysis.com/v1.1/test/players?status=active"
+    )
+      .then((response) => response.json())
+      .then((data) => setPlayers(data.data));
+  }, [playerArray]);
 
   let schools =
     playerArray.length === 0 ? "1" : playerArray.map((player) => player.cteam);
@@ -88,17 +96,17 @@ function App() {
 
   return (
     <div className="App">
-      {console.log(uniqueSchools)}
       <Navbar />
       <div className="col-12 d-flex pl-2 pr-2 pt-5">
         <FilterForm
           handleTeamChange={handleTeamChange}
           handlePositionChange={handlePositionChange}
+          onSubmit={handleSubmit}
           selectedTitles={selected}
           schools={uniqueSchools}
           positions={uniquePositions}
         />
-        <FilteredTable players={playerArray} />
+        <FilteredTable filteredPlayers={filteredArray} players={playerArray} />
       </div>
     </div>
   );
