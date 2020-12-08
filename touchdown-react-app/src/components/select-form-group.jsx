@@ -10,7 +10,7 @@ const SelectFormGroup = (props) => {
     >
       <label
         className="col-4 d-inline text-left"
-        for="exampleFormControlSelect1"
+        htmlfor="exampleFormControlSelect1"
       >
         {titleProps.title}
       </label>
